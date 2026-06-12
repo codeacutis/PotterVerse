@@ -54,7 +54,7 @@ function CharacterList() {
       {!loading && !error && refineList.length > 0 && (
         <div>
           {refineList.map(character => (
-            <PokemonCard key={character.id} {...character} />
+            <CharacterCard key={character.id} {...character} />
           ))}
         </div>
       )}

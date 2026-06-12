@@ -5,6 +5,7 @@ import CharactersList from './components/lists/CharactersList/CharactersList'
 import CharacterDetailPage from './pages/CharacterDetailPage/CharacterDetailPage'
 import SpellsList from './components/lists/SpellsList/SpellsList'
 import SpellDetailPage from './pages/SpellDetailPage/SpellDetailPage'
+import AboutPage from './pages/AboutPage/AboutPage'
 
 import { Route, Routes } from 'react-router-dom'
 import { PrivateRoute } from './routes/PrivateRoute'
@@ -23,6 +24,7 @@ function App() {
           <Route path="/characters/:id" element={<CharacterDetailPage />}/>
           <Route path="/spells" element={<SpellsList />}/>
           <Route path="/spells/:id" element={<SpellDetailPage />}/>
+          <Route path="/about" element={<AboutPage />}/>
         </Route>
           
       </Routes>
