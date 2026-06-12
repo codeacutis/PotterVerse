@@ -1,13 +1,13 @@
-import { Navlink } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 
 function Navbar() {
     return(
-        <div>
-            <NavLink>Início</NavLink>
-            <NavLink>Personagens</NavLink>
-            <NavLink>Casas</NavLink>
-            <NavLink>Feitiços</NavLink>
-        </div>
+        <nav>
+            <NavLink to="/home">Início</NavLink>
+            <NavLink to="/characters">Personagens</NavLink>
+            <NavLink to="/spells">Feitiços</NavLink>
+            <NavLink to="/about">Sobre</NavLink>
+        </nav>
     )
 }
 

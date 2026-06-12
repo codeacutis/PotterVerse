@@ -16,8 +16,7 @@ export function AuthProvider({children}){
     }
 
     function signOut(){
-        return setLogin(false);
-        return false;
+        setLogin(false)
     }
 
     return(
