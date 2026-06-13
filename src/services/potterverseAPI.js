@@ -7,10 +7,10 @@ async function parseResponse(res, msg) {
   return res.json()
 }
 
-export async function fetchAllCharacters() {
-  const res = await fetch(`${BASE_URL}/characters`)
-  const data = await parseResponse(res, 'Não foi possível carregar os personagens.')
-  return data.map(mapCharacterFromApi)
+export async function fetchAllCharacters(limit = 20) {
+  const res = await fetch(`${BASE_URL}/characters`);
+  const data = await parseResponse(res, 'Não foi possível carregar os personagens.');
+  return data.slice(0, limit).map(mapCharacterFromApi);
 }
 
 export async function fetchCharactersByHouse(house) {

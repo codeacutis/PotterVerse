@@ -6,13 +6,21 @@ import CharacterDetailPage from './pages/CharacterDetailPage/CharacterDetailPage
 import SpellsList from './components/lists/SpellsList/SpellsList'
 import SpellDetailPage from './pages/SpellDetailPage/SpellDetailPage'
 import AboutPage from './pages/AboutPage/AboutPage'
+import Header from './components/staticcomponents/Header/Header'
+import Navbar from './components/staticcomponents/Navbar/Navbar'
+import Footer from './components/staticcomponents/Footer/Footer'
 
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import { PrivateRoute } from './routes/PrivateRoute'
 
 function App() {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/' || location.pathname === '/login';
+
   return (
     <div>
+      {!isLoginPage && <Header />}
+      {!isLoginPage && <Navbar />}
       <main>
       <Routes>
         <Route path="/" element={<Login />}/>
@@ -29,6 +37,7 @@ function App() {
           
       </Routes>
       </main>
+      {!isLoginPage && <Footer />}
     </div>
   )
 }

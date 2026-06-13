@@ -1,12 +1,64 @@
-import { FaUser, FaLock, FaSign } from 'react-icons/fa'
-import { useState } from 'react'
+import { FaUser, FaLock } from 'react-icons/fa'
+import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
+import potterverseLogo from '../../assets/potterverse_semfundo.webp';
+import './Login.css';
 
 function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+
+    const canvasRef = useRef(null);
+    const particles = useRef([]);
+
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        const ctx = canvas.getContext('2d');
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const colors = ['#ffe066', '#ffd700', '#c084fc', '#818cf8', '#ffffff'];
+
+        function handleMouseMove(e) {
+            for (let i = 0; i < 6; i++) {
+                particles.current.push({
+                    x: e.clientX,
+                    y: e.clientY,
+                    vx: (Math.random() - 0.5) * 2,
+                    vy: (Math.random() - 0.5) * 2 - 1,
+                    radius: Math.random() * 4 + 2,
+                    alpha: 1,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.current = particles.current.filter(p => p.alpha > 0);
+            particles.current.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.alpha -= 0.025;
+                ctx.save();
+                ctx.globalAlpha = p.alpha;
+                ctx.shadowBlur  = 12;
+                ctx.shadowColor = p.color;
+                ctx.fillStyle   = p.color;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
 
     const { signIn } = useAuth();
     const handleSubmit = (e) => {
@@ -16,19 +68,22 @@ function Login(){
     }
 
     return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <h2>Login</h2>
-                <div>
-                    <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
-                    <FaUser className='icon'/>
-                </div>
-                <div>
-                    <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required/>
-                    <FaLock className='icon'/>
-                </div>
-                <button>Entrar</button>
-            </form>
+        <div className='login-page'>
+            <canvas ref={canvasRef} className='magic-canvas' />
+            <img src={potterverseLogo} alt='PotterVerse' className='login-logo' />
+            <div className='login-card'>
+                <form onSubmit={handleSubmit}>
+                    <div className='input-group'>
+                        <FaUser className='input-icon'/>
+                        <input type="email" placeholder="Endereço de e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                    </div>
+                    <div className='input-group'>
+                        <FaLock className='input-icon'/>
+                        <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                    </div>
+                    <button type='submit'>Entrar no Castelo</button>
+                </form>
+            </div>
         </div>
     )
 }
