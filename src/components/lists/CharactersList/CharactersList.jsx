@@ -1,13 +1,15 @@
 import CharacterCard from '../../cards/CharacterCard/CharacterCard'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { fetchAllCharacters } from '../../../services/potterverseAPI'
-
+import { useState, useEffect } from 'react'
+import { fetchAllCharacters, fetchCharactersByHouse } from '../../../services/potterverseAPI'
+import { FaSearch } from 'react-icons/fa'
+import './CharactersList.css'
 
 function CharacterList() {
   const [characters, setCharacters] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [refine, setRefine] = useState('')
+  const [selectedHouse, setSelectedHouse] = useState('')
 
   useEffect(() => {
     let cancelled = false
@@ -16,7 +18,7 @@ function CharacterList() {
       try {
         setLoading(true)
         setError(null)
-        const data = await fetchAllCharacters(20)
+        const data = (selectedHouse) ? await fetchCharactersByHouse(selectedHouse) : await fetchAllCharacters(20)
         if (!cancelled) setCharacters(data)
       } catch (err) {
         if (!cancelled) setError(err.message ?? 'Erro ao carregar.')
@@ -24,35 +26,44 @@ function CharacterList() {
         if (!cancelled) setLoading(false)
       }
     }
-
     loadCharacters()
     return () => { cancelled = true }
-  }, [])
+  }, [selectedHouse])
 
-
-  const [refine, setRefine] = useState('');
   const refineList = characters.filter((p) => p.name.toLowerCase().includes(refine.toLowerCase()))
-  return (
-    <section>
-      <label htmlFor="busca">Buscar por nome: </label>
-      <input
-        id="busca"
-        type="search"
-        value={refine}
-        onChange={(e) => setRefine(e.target.value)}
-        placeholder="Ex.: harry"
-      />
-      <p className="mensagem-info">
-        Mostrando {refineList.length} Personagens(s)
-      </p>
 
-      {loading && <p>Carregando Personagem...</p>}
-      {error && <p role="alert">{error}</p>}
+  return (
+    <section className='characters-section'>
+      <div className='characters-toolbar'>
+        <div className='search-group'>
+          <FaSearch className='search-icon' />
+          <input
+            type='search'
+            value={refine}
+            onChange={(e) => setRefine(e.target.value)}
+            placeholder='Buscar por nome...'
+          />
+        </div>
+        <span className='characters-count'>Mostrando {refineList.length} personagem(ns)</span>
+      </div>
+
+      <div>
+        <select className='house-select' value={selectedHouse} onChange={(e) => setSelectedHouse(e.target.value)}>
+          <option value=''>Filtrar por casa...</option>
+          <option value='Gryffindor'>Grifinória</option>
+          <option value='Hufflepuff'>Lufa-Lufa</option>
+          <option value='Ravenclaw'>Corvinal</option>
+          <option value='Slytherin'>Sonserina</option>
+        </select>
+      </div>
+
+      {loading && <p className='status-message'>Carregando personagens...</p>}
+      {error && <p className='error-message'>{error}</p>}
       {!loading && !error && refineList.length === 0 && (
-        <p>Nenhum Personagem encontrado</p>
+        <p className='status-message'>Nenhum personagem encontrado.</p>
       )}
       {!loading && !error && refineList.length > 0 && (
-        <div>
+        <div className='characters-grid'>
           {refineList.map(character => (
             <CharacterCard key={character.id} {...character} />
           ))}

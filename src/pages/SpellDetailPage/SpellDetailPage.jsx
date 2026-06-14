@@ -28,8 +28,6 @@ function SpellDetailPage() {
 
     return (
         <div>
-            <Header />
-            <Navbar />
             <Link to="/spells">&larr; Voltar</Link>
             {loading && <p>Carregando...</p>}
             {error && <p role="alert">{error}</p>}

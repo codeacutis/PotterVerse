@@ -102,3 +102,9 @@ button[type='submit']:hover {
     opacity: 0.9;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 0.875rem;
+    text-align: center;
+}
