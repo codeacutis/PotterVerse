@@ -1,0 +1,67 @@
+.about-page {
+    min-height: calc(100vh - 200px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #0d0d0d;
+    background-image:
+        radial-gradient(ellipse at 20% 40%, rgba(129, 140, 248, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 60%, rgba(192, 132, 252, 0.07) 0%, transparent 60%);
+}
+
+.about-card {
+    max-width: 640px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 215, 0, 0.12);
+    border-radius: 16px;
+    padding: 52px 48px;
+    text-align: center;
+}
+
+.about-title {
+    font-size: 1.8rem;
+    color: #ffd700;
+    font-style: italic;
+    text-shadow: 0 0 16px rgba(255, 215, 0, 0.25);
+    letter-spacing: 1px;
+}
+
+.about-divider {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+}
+
+.about-text {
+    color: rgba(240, 230, 211, 0.75);
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.9;
+}
+
+.about-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+}
+
+.about-authors {
+    color: #f0e6d3;
+    font-size: 1rem;
+}
+
+.about-course {
+    color: rgba(240, 230, 211, 0.4);
+    font-size: 1rem;
+    font-style: italic;
+}

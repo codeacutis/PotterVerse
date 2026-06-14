@@ -23,15 +23,16 @@ function Login(){
         const colors = ['#ffe066', '#ffd700', '#c084fc', '#818cf8', '#ffffff'];
 
         function handleMouseMove(e) {
-            for (let i = 0; i < 6; i++) {
+            for (let i = 0; i < 3; i++) {
                 particles.current.push({
-                    x: e.clientX,
-                    y: e.clientY,
-                    vx: (Math.random() - 0.5) * 2,
-                    vy: (Math.random() - 0.5) * 2 - 1,
-                    radius: Math.random() * 4 + 2,
-                    alpha: 1,
+                    x: e.clientX + (Math.random() - 0.5) * 8,
+                    y: e.clientY + (Math.random() - 0.5) * 8,
+                    vx: (Math.random() - 0.5) * 0.8,
+                    vy: -Math.random() * 1.2 - 0.3,
+                    radius: Math.random() * 2.5 + 1,
+                    alpha: Math.random() * 0.5 + 0.4,
                     color: colors[Math.floor(Math.random() * colors.length)],
+                    wobble: Math.random() * Math.PI * 2,
                 });
             }
         }
@@ -40,14 +41,16 @@ function Login(){
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.current = particles.current.filter(p => p.alpha > 0);
             particles.current.forEach(p => {
-                p.x += p.vx;
+                p.wobble += 0.08;
+                p.x += p.vx + Math.sin(p.wobble) * 0.4;
                 p.y += p.vy;
-                p.alpha -= 0.025;
+                p.alpha -= 0.012;
+                p.radius *= 0.98;
                 ctx.save();
                 ctx.globalAlpha = p.alpha;
-                ctx.shadowBlur  = 12;
+                ctx.shadowBlur = 10;
                 ctx.shadowColor = p.color;
-                ctx.fillStyle   = p.color;
+                ctx.fillStyle = p.color;
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
                 ctx.fill();
