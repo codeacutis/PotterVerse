@@ -1,8 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { fetchAllSpells } from '../../services/potterverseAPI'
-import Header from '../../components/staticcomponents/Header/Header'
-import Navbar from '../../components/staticcomponents/Navbar/Navbar'
+import './SpellDetailPage.css'
 
 function SpellDetailPage() {
     const { id } = useParams()
@@ -27,15 +26,16 @@ function SpellDetailPage() {
     }, [id])
 
     return (
-        <div>
-            <Link to="/spells">&larr; Voltar</Link>
-            {loading && <p>Carregando...</p>}
-            {error && <p role="alert">{error}</p>}
-            {!loading && !spell && <p>Feitiço não encontrado.</p>}
+        <div className='spell-detail-page'>
+            <Link to='/spells' className='back-link'>&larr; Voltar</Link>
+            {loading && <p className='status-message'>Carregando...</p>}
+            {error && <p className='error-message'>{error}</p>}
+            {!loading && !spell && <p className='status-message'>Feitiço não encontrado.</p>}
             {spell && (
-                <div>
-                    <h2>{spell.name}</h2>
-                    <p><strong>Descrição:</strong> {spell.description || '—'}</p>
+                <div className='spell-detail-card'>
+                    <h2 className='spell-detail-name'>{spell.name}</h2>
+                    <div className='spell-detail-divider' />
+                    <p className='spell-detail-description'>{spell.description || '—'}</p>
                 </div>
             )}
         </div>

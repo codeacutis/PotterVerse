@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+body, input, select, button, textarea {
+    font-family: 'IM Fell English', serif;
+    color: #f0e6d3;
+}
+
 body {
     min-height: 100vh;
 }

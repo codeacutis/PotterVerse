@@ -17,6 +17,8 @@ export function mapCharacterFromApi(apiData) {
     actor: apiData.actor,
     alive: apiData.alive,
     imageUrl: apiData.image || '',
+    isStudent: apiData.hogwartsStudent ?? false,
+    isStaff: apiData.hogwartsStaff ?? false,
   }
 }
 

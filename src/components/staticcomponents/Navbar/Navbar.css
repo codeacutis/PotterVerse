@@ -3,7 +3,7 @@
     justify-content: center;
     gap: 8px;
     padding: 10px 0;
-    background-color: transparent;
+    background-color: #0d0d0d;
 }
 
 .nav-link {
@@ -17,7 +17,8 @@
 }
 
 .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.07);
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
 }
 
 .nav-link.active {

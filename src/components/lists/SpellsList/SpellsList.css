@@ -1,0 +1,64 @@
+.spells-section {
+    min-height: calc(100vh - 200px);
+    padding: 40px;
+    background-color: #0d0d0d;
+    background-image:
+        radial-gradient(ellipse at 20% 40%, rgba(129, 140, 248, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 60%, rgba(192, 132, 252, 0.07) 0%, transparent 60%);
+}
+
+.spells-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.spells-count {
+    color: rgba(240, 230, 211, 0.4);
+    font-size: 0.95rem;
+    font-style: italic;
+    margin-left: auto;
+}
+
+.spells-index-title {
+    font-family: 'IM Fell English', serif;
+    color: rgba(240, 230, 211, 0.25);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.spells-columns {
+    columns: 3;
+    column-gap: 40px;
+    column-rule: 1px solid rgba(255, 215, 0, 0.08);
+}
+
+.status-message {
+    color: rgba(240, 230, 211, 0.5);
+    text-align: center;
+    padding: 40px 0;
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+}
+
+.error-message {
+    color: #ff6b6b;
+    text-align: center;
+    padding: 40px 0;
+}
+
+@media (max-width: 768px) {
+    .spells-columns {
+        columns: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .spells-columns {
+        columns: 1;
+    }
+}
