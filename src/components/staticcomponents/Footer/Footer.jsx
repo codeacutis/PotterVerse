@@ -1,7 +1,9 @@
+import './Footer.css';
+
 function Footer(){
     return (
-        <footer>
-            <p>Desenvolvido por Guilherme Augusto & João Pedro - Programação Frontend - UNIVAS</p>
+        <footer className='footer'>
+            <p>Desenvolvido por Guilherme Augusto & João Pedro &mdash; Programação Frontend &mdash; UNIVAS</p>
         </footer>
     )
 }

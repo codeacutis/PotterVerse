@@ -7,7 +7,7 @@ async function parseResponse(res, msg) {
   return res.json()
 }
 
-export async function fetchAllCharacters(limit = 20) {
+export async function fetchAllCharacters(limit) {
   const res = await fetch(`${BASE_URL}/characters`);
   const data = await parseResponse(res, 'Não foi possível carregar os personagens.');
   return data.slice(0, limit).map(mapCharacterFromApi);

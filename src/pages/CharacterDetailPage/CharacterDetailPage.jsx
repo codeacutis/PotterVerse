@@ -1,8 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { fetchAllCharacters } from '../../services/potterverseAPI'
-import Header from '../../components/staticcomponents/Header/Header'
-import Navbar from '../../components/staticcomponents/Navbar/Navbar'
+import './CharacterDetailPage.css'
 
 function CharacterDetailPage() {
     const { id } = useParams()
@@ -27,24 +26,54 @@ function CharacterDetailPage() {
     }, [id])
 
     return (
-        <div>
-            <Header />
-            <Navbar />
-            <Link to="/characters">&larr; Voltar</Link>
-            {loading && <p>Carregando...</p>}
-            {error && <p role="alert">{error}</p>}
-            {!loading && !character && <p>Personagem não encontrado.</p>}
+        <div className='detail-page'>
+            <Link to='/characters' className='back-link'>&larr; Voltar</Link>
+            {loading && <p className='status-message'>Carregando...</p>}
+            {error && <p className='error-message'>{error}</p>}
+            {!loading && !character && <p className='status-message'>Personagem não encontrado.</p>}
             {character && (
-                <div>
-                    {character.imageUrl && <img src={character.imageUrl} alt={character.name} />}
-                    <h2>{character.name}</h2>
-                    <p><strong>Casa:</strong> {character.house}</p>
-                    <p><strong>Espécie:</strong> {character.species}</p>
-                    <p><strong>Gênero:</strong> {character.gender}</p>
-                    <p><strong>Ancestralidade:</strong> {character.ancestry || '—'}</p>
-                    <p><strong>Patrono:</strong> {character.patronus || '—'}</p>
-                    <p><strong>Ator:</strong> {character.actor || '—'}</p>
-                    <p><strong>Status:</strong> {character.alive ? 'Vivo' : 'Falecido'}</p>
+                <div className='detail-card'>
+                    <div className='detail-image-wrapper'>
+                        {character.imageUrl
+                            ? <img src={character.imageUrl} alt={character.name} className='detail-image' />
+                            : <div className='detail-image-placeholder'>?</div>
+                        }
+                    </div>
+                    <div className='detail-info'>
+                        <h2 className='detail-name'>{character.name}</h2>
+                        <div className='detail-fields'>
+                            <div className='detail-field'>
+                                <span className='field-label'>Casa</span>
+                                <span className='field-value'>{character.house || '—'}</span>
+                            </div>
+                            <div className='detail-field'>
+                                <span className='field-label'>Espécie</span>
+                                <span className='field-value'>{character.species || '—'}</span>
+                            </div>
+                            <div className='detail-field'>
+                                <span className='field-label'>Gênero</span>
+                                <span className='field-value'>{character.gender || '—'}</span>
+                            </div>
+                            <div className='detail-field'>
+                                <span className='field-label'>Ancestralidade</span>
+                                <span className='field-value'>{character.ancestry || '—'}</span>
+                            </div>
+                            <div className='detail-field'>
+                                <span className='field-label'>Patrono</span>
+                                <span className='field-value'>{character.patronus || '—'}</span>
+                            </div>
+                            <div className='detail-field'>
+                                <span className='field-label'>Ator</span>
+                                <span className='field-value'>{character.actor || '—'}</span>
+                            </div>
+                            <div className='detail-field'>
+                                <span className='field-label'>Status</span>
+                                <span className={`field-value ${character.alive ? 'alive' : 'deceased'}`}>
+                                    {character.alive ? 'Vivo' : 'Falecido'}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>

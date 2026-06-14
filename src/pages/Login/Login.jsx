@@ -8,6 +8,7 @@ import './Login.css';
 function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const canvasRef = useRef(null);
@@ -63,8 +64,12 @@ function Login(){
     const { signIn } = useAuth();
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (!email.includes('@')){
+            setError("Digite um endereço de e-mail válido!");
+            return;
+        }
         const result = signIn(email, password);
-        if (result) navigate('/home');
+        (result) ? navigate('/home') : setError("Email ou senha incorretos!");
     }
 
     return(
@@ -72,10 +77,10 @@ function Login(){
             <canvas ref={canvasRef} className='magic-canvas' />
             <img src={potterverseLogo} alt='PotterVerse' className='login-logo' />
             <div className='login-card'>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} noValidate>
                     <div className='input-group'>
                         <FaUser className='input-icon'/>
-                        <input type="email" placeholder="Endereço de e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
+                        <input type="text" placeholder="Endereço de e-mail" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                     </div>
                     <div className='input-group'>
                         <FaLock className='input-icon'/>
@@ -83,6 +88,7 @@ function Login(){
                     </div>
                     <button type='submit'>Entrar no Castelo</button>
                 </form>
+                {error && <p className='error-message'>{error}</p>}
             </div>
         </div>
     )

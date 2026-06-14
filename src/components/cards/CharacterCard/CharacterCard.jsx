@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import './CharacterCard.css'
 
 function CharacterCard({id, name, house, imageUrl, species}){
   return (
