@@ -4,11 +4,12 @@ export const AuthContext = createContext();
 
 export function AuthProvider({children}){
     const [user, setUser] = useState({});
-    const [login, setLogin] = useState(false);
+    const [login, setLogin] = useState(() => localStorage.getItem('login') === 'true');
 
     function signIn(email, password){
         if(email === "admin@admin.com" && password === "admin"){
             setLogin(true);
+            localStorage.setItem('login', 'true');
             return true;
         }
         setLogin(false);
@@ -16,7 +17,8 @@ export function AuthProvider({children}){
     }
 
     function signOut(){
-        setLogin(false)
+        setLogin(false);
+        localStorage.removeItem('login');
     }
 
     return(

@@ -6,6 +6,7 @@ import CharacterDetailPage from './pages/CharacterDetailPage/CharacterDetailPage
 import SpellsList from './components/lists/SpellsList/SpellsList'
 import SpellDetailPage from './pages/SpellDetailPage/SpellDetailPage'
 import AboutPage from './pages/AboutPage/AboutPage'
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import Header from './components/staticcomponents/Header/Header'
 import Navbar from './components/staticcomponents/Navbar/Navbar'
 import Footer from './components/staticcomponents/Footer/Footer'
@@ -34,6 +35,8 @@ function App() {
           <Route path="/spells/:id" element={<SpellDetailPage />}/>
           <Route path="/about" element={<AboutPage />}/>
         </Route>
+
+        <Route path="*" element={<NotFoundPage />}/>
           
       </Routes>
       </main>

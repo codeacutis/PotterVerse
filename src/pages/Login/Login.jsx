@@ -64,7 +64,11 @@ function Login(){
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
-    const { signIn } = useAuth();
+    const { signIn, login } = useAuth();
+
+    useEffect(() => {
+        if (login) navigate('/home');
+    }, [login]);
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!email.includes('@')){
