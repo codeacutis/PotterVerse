@@ -116,3 +116,27 @@
     text-align: center;
     padding: 40px 0;
 }
+
+@media (max-width: 768px) {
+    .detail-page {
+        padding: 24px 20px;
+    }
+
+    .detail-card {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        padding: 24px 20px;
+    }
+
+    .detail-name {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .detail-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+}

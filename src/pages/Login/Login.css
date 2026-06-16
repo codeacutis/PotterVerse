@@ -23,6 +23,7 @@
 
 .login-logo {
     width: 500px;
+    max-width: 85vw;
     filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6));
 }
 
@@ -41,6 +42,16 @@
     box-shadow: 0 0 20px rgba(192, 132, 252, 0.06), 0 0 40px rgba(255, 215, 0, 0.03);
     width: 100%;
     max-width: 400px;
+}
+
+@media (max-width: 480px) {
+    .login-page {
+        padding: 24px 16px;
+    }
+
+    .login-card {
+        padding: 32px 20px;
+    }
 }
 
 form {
@@ -71,6 +82,16 @@ form {
     flex-shrink: 0;
 }
 
+.eye-icon {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.eye-icon:hover {
+    opacity: 1;
+}
+
 .input-group input {
     background: transparent;
     border: none;
@@ -82,6 +103,11 @@ form {
 
 .input-group input::placeholder {
     color: rgba(240, 230, 211, 0.4);
+}
+
+.input-group input::-ms-reveal,
+.input-group input::-ms-clear {
+    display: none;
 }
 
 button[type='submit'] {

@@ -4,6 +4,7 @@
     gap: 8px;
     padding: 10px 0;
     background-color: #0d0d0d;
+    flex-wrap: wrap;
 }
 
 .nav-link {
@@ -24,4 +25,11 @@
 .nav-link.active {
     color: #ffd700;
     text-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+@media (max-width: 480px) {
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
 }

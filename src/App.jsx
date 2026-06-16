@@ -27,6 +27,8 @@ function App() {
         <Route path="/" element={<Login />}/>
         <Route path="/login" element={<Login />} />
 
+        <Route path="*" element={<NotFoundPage />}/>
+
         <Route element={<PrivateRoute />}>
           <Route path="/home" element={<HomePage />}/>
           <Route path="/characters" element={<CharactersList />}/>
@@ -35,8 +37,6 @@ function App() {
           <Route path="/spells/:id" element={<SpellDetailPage />}/>
           <Route path="/about" element={<AboutPage />}/>
         </Route>
-
-        <Route path="*" element={<NotFoundPage />}/>
           
       </Routes>
       </main>

@@ -1,4 +1,4 @@
-import { FaUser, FaLock } from 'react-icons/fa'
+import { FaUser, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa'
 import { useState, useEffect, useRef } from 'react'
 import { useAuth } from '../../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
@@ -9,6 +9,7 @@ function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const canvasRef = useRef(null);
@@ -91,7 +92,11 @@ function Login(){
                     </div>
                     <div className='input-group'>
                         <FaLock className='input-icon'/>
-                        <input type="password" placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                        <input type={showPassword ? 'text' : 'password'} placeholder="Senha" value={password} onChange={(e) => setPassword(e.target.value)} required/>
+                        {showPassword
+                            ? <FaEyeSlash className='input-icon eye-icon' onClick={() => setShowPassword(false)} />
+                            : <FaEye className='input-icon eye-icon' onClick={() => setShowPassword(true)} />
+                        }
                     </div>
                     <button type='submit'>Entrar no Castelo</button>
                 </form>

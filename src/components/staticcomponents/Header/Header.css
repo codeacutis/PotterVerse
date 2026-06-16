@@ -31,3 +31,20 @@
     border-color: rgba(255, 100, 100, 0.5);
     color: rgba(255, 100, 100, 0.8);
 }
+
+@media (max-width: 480px) {
+    .header {
+        padding: 12px 16px;
+        justify-content: flex-start;
+    }
+
+    .header-logo {
+        height: 72px;
+    }
+
+    .signout-btn {
+        right: 16px;
+        font-size: 0.75rem;
+        padding: 5px 10px;
+    }
+}
