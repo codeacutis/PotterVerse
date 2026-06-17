@@ -7,7 +7,7 @@ export function AuthProvider({children}){
     const [login, setLogin] = useState(() => localStorage.getItem('login') === 'true');
 
     function signIn(email, password){
-        if(email === "admin@admin.com" && password === "admin"){
+        if(email === "admin@admin.com" && password === "Hp@Hogwarts2025!N0is&hz!ka"){
             setLogin(true);
             localStorage.setItem('login', 'true');
             return true;
