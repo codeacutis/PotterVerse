@@ -66,6 +66,9 @@ function CharacterList() {
           <option value='staff'>Funcionários</option>
         </select>
       </div>
+      <div>
+        <button className='clear-filters-btn' onClick={() => {setSelectedType(''); setSelectedHouse('')}}>Remover Filtros</button>
+      </div>
     </div>
 
       {loading && <p className='status-message'>Carregando personagens...</p>}

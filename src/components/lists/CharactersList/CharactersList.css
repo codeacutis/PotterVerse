@@ -83,6 +83,24 @@
     color: #f0e6d3;
 }
 
+.clear-filters-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 8px;
+    padding: 10px 16px;
+    color: rgba(240, 230, 211, 0.6);
+    font-size: 0.9rem;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: border-color 0.3s, color 0.3s;
+    margin-bottom: 20px;
+}
+
+.clear-filters-btn:hover {
+    border-color: rgba(255, 100, 100, 0.5);
+    color: rgba(255, 100, 100, 0.8);
+}
+
 .characters-count {
     color: rgba(240, 230, 211, 0.4);
     font-size: 0.95rem;
